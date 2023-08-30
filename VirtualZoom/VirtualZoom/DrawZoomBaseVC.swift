@@ -25,6 +25,7 @@ class DrawZoomBaseVC: UIViewController {
 	// a label to put at the top to show the current zoomScale
 	let infoLabel: UILabel = {
 		let v = UILabel()
+		v.font = .systemFont(ofSize: 15.0, weight: .light)
 		v.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
 		v.textAlignment = .center
 		v.numberOfLines = 0
