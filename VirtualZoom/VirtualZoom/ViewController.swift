@@ -16,7 +16,7 @@ class ViewController: UIViewController {
 		stackView.axis = .vertical
 		stackView.spacing = 20.0
 		
-		["The Basics", "Simple Scaled View", "Complex Scaled View"].forEach { str in
+		["The Basics", "Simple Scaled View", "Complex Scaled View", "Notes Grid"].forEach { str in
 			let btn = UIButton()
 			btn.setTitle(str, for: [])
 			btn.setTitleColor(.white, for: .normal)
@@ -62,6 +62,9 @@ class ViewController: UIViewController {
 		case 2:
 			let vc = ComplexVC()
 			self.navigationController?.pushViewController(vc, animated: true)
+		case 3:
+			let vc = NotesGridVC()
+			self.navigationController?.pushViewController(vc, animated: true)
 		default:
 			()
 		}
@@ -88,5 +91,39 @@ class ComplexVC: DrawZoomBaseVC {
 		super.viewDidLoad()
 	}
 	
+}
+
+class NotesGridVC: DrawZoomBaseVC {
+	
+	override func viewDidLoad() {
+		title = "Notes Grid View"
+		drawView = NotesGridScaledView()
+
+		super.viewDidLoad()
+		
+		scrollView.maximumZoomScale = 5.0
+
+		let tg = UITapGestureRecognizer(target: self, action: #selector(gotTap(_:)))
+		zoomView.addGestureRecognizer(tg)
+	}
+
+	@objc func gotTap(_ g: UITapGestureRecognizer) {
+		guard let v = g.view,
+			  let dv = drawView as? NotesGridScaledView
+		else { return }
+		let p = g.location(in: v)
+		dv.gotTap(at: p)
+	}
+
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		
+		let av = UIAlertController(title: "Notes Grid", message: "Tap any \"cell\" to add/remove a Note", preferredStyle: .alert)
+		let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+		})
+		av.addAction(ok)
+		self.present(av, animated: true, completion: nil)
+		
+	}
 }
 

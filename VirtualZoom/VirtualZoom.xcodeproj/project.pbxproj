@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F8C3B4702B0D2B48000C5DB7 /* MusicalNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C3B46F2B0D2B48000C5DB7 /* MusicalNote.swift */; };
+		F8C3B4742B0E4AB2000C5DB7 /* NotesGridScaledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C3B4732B0E4AB2000C5DB7 /* NotesGridScaledView.swift */; };
 		FC317B0A29D2339D00ED52E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC317B0929D2339D00ED52E6 /* AppDelegate.swift */; };
 		FC317B0C29D2339D00ED52E6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC317B0B29D2339D00ED52E6 /* SceneDelegate.swift */; };
 		FC317B0E29D2339D00ED52E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC317B0D29D2339D00ED52E6 /* ViewController.swift */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F8C3B46F2B0D2B48000C5DB7 /* MusicalNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicalNote.swift; sourceTree = "<group>"; };
+		F8C3B4732B0E4AB2000C5DB7 /* NotesGridScaledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesGridScaledView.swift; sourceTree = "<group>"; };
 		FC317B0629D2339D00ED52E6 /* VirtualZoom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualZoom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC317B0929D2339D00ED52E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC317B0B29D2339D00ED52E6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,7 +80,9 @@
 				FC69223E2A9F889B000B238B /* DrawZoomBaseVC.swift */,
 				FC6922402A9F88E1000B238B /* SimpleDrawScaledView.swift */,
 				FC6922422A9F88FA000B238B /* ComplexDrawScaledView.swift */,
+				F8C3B4732B0E4AB2000C5DB7 /* NotesGridScaledView.swift */,
 				FC6922442A9F892F000B238B /* SwiftyBird.swift */,
+				F8C3B46F2B0D2B48000C5DB7 /* MusicalNote.swift */,
 				FC317B0F29D2339D00ED52E6 /* Main.storyboard */,
 				FC317B1229D2339E00ED52E6 /* Assets.xcassets */,
 				FC317B1429D2339E00ED52E6 /* LaunchScreen.storyboard */,
@@ -156,6 +162,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8C3B4702B0D2B48000C5DB7 /* MusicalNote.swift in Sources */,
 				FC69223F2A9F889B000B238B /* DrawZoomBaseVC.swift in Sources */,
 				FC6922452A9F892F000B238B /* SwiftyBird.swift in Sources */,
 				FC317B0E29D2339D00ED52E6 /* ViewController.swift in Sources */,
@@ -164,6 +171,7 @@
 				FC69223D2A9F8875000B238B /* TheBasicsVC.swift in Sources */,
 				FC317B0A29D2339D00ED52E6 /* AppDelegate.swift in Sources */,
 				FC317B0C29D2339D00ED52E6 /* SceneDelegate.swift in Sources */,
+				F8C3B4742B0E4AB2000C5DB7 /* NotesGridScaledView.swift in Sources */,
 				FC69223B2A9F883F000B238B /* BasicScalingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

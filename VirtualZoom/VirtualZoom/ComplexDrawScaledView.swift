@@ -94,7 +94,7 @@ class ComplexDrawScaledView: UIView {
 		
 		r.origin = .init(x: 50.0, y: 50.0)
 		theBirdPaths.append(SwiftyBird().path(inRect: r))
-		
+
 		r.origin = .init(x: sz.width - (v + 50.0), y: 50.0)
 		theBirdPaths.append(SwiftyBird().path(inRect: r))
 		

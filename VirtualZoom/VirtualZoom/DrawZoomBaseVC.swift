@@ -83,8 +83,6 @@ class DrawZoomBaseVC: UIViewController {
 		scrollView.indicatorStyle = .white
 		
 		scrollView.delegate = self
-		
-		//infoLabel.isHidden = true
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -106,7 +104,12 @@ class DrawZoomBaseVC: UIViewController {
 			zoomView.widthAnchor.constraint(equalToConstant: dv.virtualSize.width).isActive = true
 			zoomView.heightAnchor.constraint(equalToConstant: dv.virtualSize.height).isActive = true
 		}
-		
+		else
+		if let dv = drawView as? NotesGridScaledView {
+			zoomView.widthAnchor.constraint(equalToConstant: dv.virtualSize.width).isActive = true
+			zoomView.heightAnchor.constraint(equalToConstant: dv.virtualSize.height).isActive = true
+		}
+
 		// let auto-layout size the view before we update the info label
 		DispatchQueue.main.async {
 			self.updateInfoLabel()
@@ -128,6 +131,10 @@ extension DrawZoomBaseVC: UIScrollViewDelegate {
 		if let dv = drawView as? ComplexDrawScaledView {
 			dv.contentOffset = scrollView.contentOffset
 		}
+		else
+		if let dv = drawView as? NotesGridScaledView {
+			dv.contentOffset = scrollView.contentOffset
+		}
 	}
 	func scrollViewDidZoom(_ scrollView: UIScrollView) {
 		updateInfoLabel()
@@ -136,6 +143,10 @@ extension DrawZoomBaseVC: UIScrollViewDelegate {
 		}
 		else
 		if let dv = drawView as? ComplexDrawScaledView {
+			dv.zoomScale = scrollView.zoomScale
+		}
+		else
+		if let dv = drawView as? NotesGridScaledView {
 			dv.zoomScale = scrollView.zoomScale
 		}
 	}
