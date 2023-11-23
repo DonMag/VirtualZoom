@@ -23,9 +23,12 @@ class NotesGridScaledView: UIView {
 	private let colSpacing: CGFloat = 0.0
 	private let rowSpacing: CGFloat = 0.0
 	
+	private let fontSize: CGFloat = 20.0
+	
 	private let rectInset: CGSize = .init(width: 0.0, height: 0.0)
 	
 	private var theRectPaths: [UIBezierPath] = []
+	private var theTextPoints: [CGPoint] = []
 	private var theNotePaths: [UIBezierPath] = []
 	
 	override init(frame: CGRect) {
@@ -49,6 +52,8 @@ class NotesGridScaledView: UIView {
 			for _ in 0..<nCols {
 				let rPath = UIBezierPath(rect: r.insetBy(dx: rectInset.width, dy: rectInset.height))
 				theRectPaths.append(rPath)
+				let pt: CGPoint = .init(x: r.midX, y: r.midY)
+				theTextPoints.append(pt)
 				r.origin.x += colWidth + colSpacing
 			}
 			r.origin.x = 0.0
@@ -71,6 +76,7 @@ class NotesGridScaledView: UIView {
 			.scaledBy(x: zoomScale, y: zoomScale)
 		
 		drawRects(insideRect: rect, withTransform: tr)
+		drawStrings(insideRect: rect, withTransform: tr)
 		drawNotes(insideRect: rect, withTransform: tr)
 		
 	}
@@ -89,24 +95,26 @@ class NotesGridScaledView: UIView {
 			}
 		}
 	}
-	//	private func drawStrings(insideRect: CGRect, withTransform tr: CGAffineTransform) {
-	//		// scale the font point-size
-	//		let font: UIFont = .systemFont(ofSize: 30.0 * zoomScale)
-	//		let attribs: [NSAttributedString.Key : Any] = [.font: font, .foregroundColor: UIColor.red]
-	//		for (i, pt) in theTextPoints.enumerated() {
-	//			//	transform the point
-	//			let trPT: CGPoint = pt.applying(tr)
-	//			//	attributed string at zoomed point-size
-	//			let string = NSAttributedString(string: "\(i+1)", attributes: attribs)
-	//			//	calculate the text rect
-	//			let sz: CGSize = string.size()
-	//			let r: CGRect = .init(x: trPT.x - sz.width * 0.5, y: trPT.y - sz.height * 0.5, width: sz.width, height: sz.height)
-	//			// only draw if visible
-	//			if r.intersects(insideRect) {
-	//				string.draw(at: r.origin)
-	//			}
-	//		}
-	//	}
+	private func drawStrings(insideRect: CGRect, withTransform tr: CGAffineTransform) {
+		// scale the font point-size
+		let font: UIFont = .systemFont(ofSize: fontSize * zoomScale)
+		let attribs: [NSAttributedString.Key : Any] = [.font: font, .foregroundColor: UIColor.red]
+		for (i, pt) in theTextPoints.enumerated() {
+			//	transform the point
+			let trPT: CGPoint = pt.applying(tr)
+			//	attributed string at zoomed point-size
+			let row: Int = i / nCols
+			let col: Int = i % nCols
+			let string = NSAttributedString(string: "\(row)-\(col)", attributes: attribs)
+			//	calculate the text rect
+			let sz: CGSize = string.size()
+			let r: CGRect = .init(x: trPT.x - sz.width * 0.5, y: trPT.y - sz.height * 0.5, width: sz.width, height: sz.height)
+			// only draw if visible
+			if r.intersects(insideRect) {
+				string.draw(at: r.origin)
+			}
+		}
+	}
 	private func drawNotes(insideRect: CGRect, withTransform tr: CGAffineTransform) {
 		UIColor.yellow.setStroke()
 		UIColor(red: 1.0, green: 0.6, blue: 0.3, alpha: 1.0).setFill()
